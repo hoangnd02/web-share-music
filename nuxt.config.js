@@ -98,7 +98,6 @@ export default {
   },
   middleware: ['checkLogin', 'music'],
   router: {
-    middleware: ['checkLogin', 'music'],
   },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
