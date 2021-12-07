@@ -27,6 +27,7 @@ interface Store {
   updateAlbum: any;
   newSongs: any[];
   getLogged: boolean;
+  getAllMusics: boolean;
 }
 
 const store = ssrRef<Store>({
@@ -54,6 +55,7 @@ const store = ssrRef<Store>({
   },
   newSongs: [],
   getLogged: false,
+  getAllMusics: false,
 })
 
 export default store;

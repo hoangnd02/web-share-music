@@ -3,8 +3,10 @@ import store from "@/controllers/store";
 import ApiClient from "@/library/ApiClient"
 
 export default async function (context: Context) {
+  if(store.value.getAllMusics === true) return
   if(!store.value.music) {
     try {
+      store.value.getAllMusics = true
       const musics = await new ApiClient(context.$axios).get("public/musics")
       const dataAlbum = await new ApiClient(context.$axios).get("public/albums")
       const newSongs = await new ApiClient(context.$axios).get("public/musics?order_by=view_count&ordering=desc&limit=10")
