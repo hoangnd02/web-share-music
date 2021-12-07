@@ -26,10 +26,10 @@
                 </div>
                 <div class="profile-container-nav-right">
                     <div class="profile-container-nav-item">
-                        <NuxtLink to="/update-profile">
+                        <nuxt-link to="/update-profile">
                             <i class="fas fa-edit"></i>
                             Edit
-                        </NuxtLink>
+                        </nuxt-link>
                     </div>
                 </div>
             </div>

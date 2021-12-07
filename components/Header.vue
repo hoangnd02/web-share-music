@@ -33,25 +33,25 @@
                         </span>
                         <ul v-if="!user" class="header__navbar-user-menu" >
                             <li class="header__navbar-user-item">
-                                <!-- <NuxtLink to="/profile">Tài khoản của tôi</NuxtLink> -->
+                                <!-- <nuxt-link to="/profile">Tài khoản của tôi</nuxt-link> -->
                             </li>
                             <li class="header__navbar-user-item header__navbar-user-item--separate">
-                                <NuxtLink to="/login" class="header__navbar-user-item-link">Login</NuxtLink>
+                                <nuxt-link to="/login" class="header__navbar-user-item-link">Login</nuxt-link>
                             </li>
                             <li class="header__navbar-user-item header__navbar-user-item--separate">
-                                <NuxtLink to="/register" class="header__navbar-user-item-link">Register</NuxtLink>
+                                <nuxt-link to="/register" class="header__navbar-user-item-link">Register</nuxt-link>
 
                             </li>
                         </ul>
                         <ul v-else class="header__navbar-user-menu">
                             <li class="header__navbar-user-item header__navbar-user-item--separate">
-                                <NuxtLink to="/profile" class="header__navbar-user-item-link">My profile</NuxtLink>
+                                <nuxt-link to="/profile" class="header__navbar-user-item-link">My profile</nuxt-link>
                             </li>
                             <li v-if="user.state !== 'active'" class="header__navbar-user-item header__navbar-user-item--separate">
-                                <NuxtLink to="/confirm-email" class="header__navbar-user-item-link">Comfirm email</NuxtLink>
+                                <nuxt-link to="/confirm-email" class="header__navbar-user-item-link">Comfirm email</nuxt-link>
                             </li>
                             <li class="header__navbar-user-item header__navbar-user-item--separate">
-                                <NuxtLink to="/change-password" class="header__navbar-user-item-link">Change password</NuxtLink>
+                                <nuxt-link to="/change-password" class="header__navbar-user-item-link">Change password</nuxt-link>
                             </li>
                             <li class="header__navbar-user-item header__navbar-user-item--separate">
                                 <div class="header__navbar-user-item-link" @click="logout">Logout</div>

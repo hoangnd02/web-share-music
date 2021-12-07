@@ -5,7 +5,7 @@
         <div class="login-another">
             <p class="register">
                 Don't have an account yet?
-                <Nuxt-Link to="/register">Create one</Nuxt-Link>
+                <nuxt-link to="/register">Create one</nuxt-link>
             </p>
         </div>
         <div v-if="sentEmail === 0">

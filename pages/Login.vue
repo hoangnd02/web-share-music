@@ -5,7 +5,7 @@
         <div class="login-another">
             <p class="register">
                 Don't have an account yet?
-                <Nuxt-Link to="/register">Create one</Nuxt-Link>
+                <nuxt-link to="/register">Create one</nuxt-link>
             </p>
         </div>
         <AuthForm title="Login" @submit.prevent="login">
@@ -15,7 +15,7 @@
                 <div class="form-block">
                     <input class="form-control btn" type="submit" name="submit" value="Sign In" />
                 </div>
-                <Nuxt-Link to="/forgot-password" class="forgot">Forgot Password?</Nuxt-Link>
+                <nuxt-link to="/forgot-password" class="forgot">Forgot Password?</nuxt-link>
             </div>
         </AuthForm>
     </div>

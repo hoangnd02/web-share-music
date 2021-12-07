@@ -9,7 +9,6 @@ export default async function (context: Context) {
       if(!store.value.user) {
         const {data} = await new ApiClient(context.$axios).get("resource/users/me")
         store.value.user = data
-        
       }
     
       if (context.route.path === '/confirm-email' && store.value.user?.state === 'pending') {
