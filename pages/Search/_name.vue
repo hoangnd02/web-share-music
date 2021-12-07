@@ -52,7 +52,6 @@ import ListSong2 from '../../components/Song2/ListSong2.vue'
 import ApiClient from "@/library/ApiClient"
 
 @Component({
-    middleware: "music",
     components: {
         ListAlbum,
         ListAlbum4,
