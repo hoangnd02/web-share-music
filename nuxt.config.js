@@ -96,7 +96,7 @@ export default {
   proxy: {
     '/api/': 'https://learn.huuhait.me/',
   },
-  middleware: ['checkLogin', 'getMusic'],
+  middleware: ['getMusic', 'checkLogin'],
   router: {},
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
