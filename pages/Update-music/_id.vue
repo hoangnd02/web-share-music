@@ -46,7 +46,6 @@ import {
 } from 'vue-property-decorator'
 import ApiClient from '~/library/ApiClient'
 import MusicMixin from '~/mixins/music'
-import ApiClient from "@/library/ApiClient"
 
 @Component({
     middleware: "auth",

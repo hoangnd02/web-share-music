@@ -116,7 +116,7 @@ export default class Profile extends Mixins(MusicMixin) {
 
     indexNav: number = 2
     likedMusics = [];
-    myMusics = []
+    myMusics: any = []
     album: any[] = []
 
     get user() {
@@ -141,7 +141,7 @@ export default class Profile extends Mixins(MusicMixin) {
 
     async asyncData({$axios}: Context) {
         const {data} = await new ApiClient($axios).get(`public/users/${store.value.user?.uid}/liked/musics`)
-        let myMusicsUploaded = []
+        let myMusicsUploaded: any = []
         if(store.value.user?.role !== "member") {
             myMusicsUploaded = await new ApiClient($axios).get(`resource/musics`)
         }

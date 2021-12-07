@@ -70,7 +70,7 @@ export default class Name_Search extends Vue {
 
     async watchQuery(newQuery: any, oldQuery: any) {
         if(newQuery.name === oldQuery.name) return
-        const {data} = await new ApiClient($axios).get(`public/find?name=${newQuery.name}`)
+        const {data} = await new ApiClient(this.$axios).get(`public/find?name=${newQuery.name}`)
         this.musicsSearch = data.musics
         this.albumsSearch = data.albums
          
