@@ -11,7 +11,7 @@
                     </div>
                     <label for="input-file-avatar" style="margin-top: 10px;">
                         <img v-if="url_image !== ''" :src="url_image" />
-                        <img v-else :src="'http://localhost:3000/api/v2/public/musics/' + musicItem.id + '/image'" alt="" />
+                        <img v-else :src="`${config.api_url}public/musics/` + musicItem.id + '/image'" alt="" />
                     </label>
                     <input id="input-file-avatar" class="input-file" type="file" style="width: 200px" @change="onImageChanged" />
                 </div>
@@ -46,6 +46,7 @@ import {
 } from 'vue-property-decorator'
 import ApiClient from '~/library/ApiClient'
 import MusicMixin from '~/mixins/music'
+import config from "@/config"
 
 @Component({
     middleware: "auth",
@@ -108,6 +109,10 @@ export default class music_id extends Mixins(MusicMixin) {
         } catch (error) {
             return error
         }
+    }
+
+    get config() {
+        return config
     }
 }
 </script>

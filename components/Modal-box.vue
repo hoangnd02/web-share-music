@@ -16,7 +16,7 @@
                         </div>
                         <label for="input-file-avatar" style="margin-top: 10px;">
                             <img v-if="url" :src="url" alt="">
-                            <img v-else :src="`http://localhost:3000/api/v2/public/albums/${album.id}/image`" />
+                            <img v-else :src="`${config.api_url}public/albums/${album.id}/image`" />
                         </label>
                         <input id="input-file-avatar" class="input-file" type="file" style="width: 200px" @change="changImage" />
                     </div>
@@ -41,7 +41,7 @@
                 <div v-if="tab_Modal === 0" class="modal-box-list">
                     <div v-for="(album, index) in getAllAlbums" :key="index" class="modal-box-list-item">
                         <div class="album">
-                            <div class="album-avatar"><img :src="`http://localhost:3000/api/v2/public/albums/${album.id}/image`" alt=""></div>
+                            <div class="album-avatar"><img :src="`${config.api_url}public/albums/${album.id}/image`" alt=""></div>
                             <div class="album-detail">
                                 <div class="album-detail-name">{{album.name}}</div>
                                 <div class="album-detail-musics">{{album.music.length}} <i class="fas fa-compact-disc"></i></div>
@@ -89,6 +89,7 @@ import MusicMixin from '~/mixins/music';
 import store from '~/controllers/store';
 import ApiClient from '~/library/ApiClient';
 import ZNotification from '@/library/z-notification'
+import config from "@/config"
 
 @Component({
     components: {
@@ -213,6 +214,10 @@ export default class Modal_box extends Mixins(MusicMixin) {
     deleteMusic(index: number) {
         this.idAlbumMusic.splice(index, 1)
         this.albumMusic.splice(index, 1)
+    }
+
+    get config() {
+        return config
     }
 }
 </script>
