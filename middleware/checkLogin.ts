@@ -1,11 +1,12 @@
 import { Context } from "@nuxt/types";
 import store from "@/controllers/store";
+import ApiClient from "@/library/ApiClient"
 
 export default async function (context: Context) {
   if(store.value.getLogged === true) return
     try {
       if(!store.value.user) {
-        const data = await context.$axios.$get("http://localhost:3000/api/v2/resource/users/me")
+        const {data} = await new ApiClient(context.$axios).get("http://localhost:3000/api/v2/resource/users/me")
         store.value.user = data
         store.value.getLogged = true
       }

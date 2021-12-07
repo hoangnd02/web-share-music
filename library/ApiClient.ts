@@ -1,5 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import ZNotification from '@/library/z-notification'
+import { NuxtAxiosInstance } from "@nuxtjs/axios";
+import config from "@/config"
 
 export const jsonToParam = (json: any, first_str = "?") => {
   const parts: string[] = [];
@@ -28,8 +30,8 @@ const formatError = (e: any) => {
   sleep(10);
 };
 
-const getClient = (baseURL: string) => {
-  const client = axios.create({ baseURL });
+const getClient = (baseURL: string, nuxt_axios?: NuxtAxiosInstance) => {
+  const client = (nuxt_axios || axios).create({ baseURL });
   client.interceptors.response.use(
     (response) => { 
       return Promise.resolve(response)
@@ -44,8 +46,8 @@ const getClient = (baseURL: string) => {
 
 class ApiClient {
   private client: AxiosInstance;
-  constructor() {
-    this.client = getClient("http://localhost:3000/api/v2");
+  constructor(nuxt_axios?: NuxtAxiosInstance) {
+    this.client = getClient(config.api_url, nuxt_axios);
   }
 
   async get(url: string, data: any = {}, conf: AxiosRequestConfig = {}) {

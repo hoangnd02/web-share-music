@@ -100,6 +100,7 @@ import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import store from "../controllers/store";
 import MusicMixin from '~/mixins/music';
+import ApiClient from "@/library/ApiClient"
 
 @Component({
     middleware: ["auth", "album"],
@@ -139,16 +140,16 @@ export default class Profile extends Mixins(MusicMixin) {
     }
 
     async asyncData({$axios}: Context) {
-        const data = await $axios.$get(`http://localhost:3000/api/v2/public/users/${store.value.user?.uid}/liked/musics`)
+        const {data} = await new ApiClient($axios).get(`public/users/${store.value.user?.uid}/liked/musics`)
         let myMusicsUploaded = []
         if(store.value.user?.role !== "member") {
-            myMusicsUploaded = await $axios.$get(`http://localhost:3000/api/v2/resource/musics`)
+            myMusicsUploaded = await new ApiClient($axios).get(`resource/musics`)
         }
-        const myAlbums = await $axios.$get(`http://localhost:3000/api/v2/resource/albums`)
+        const myAlbums = await new ApiClient($axios).get(`resource/albums`)
         return {
             likedMusics: data,
-            myMusics: myMusicsUploaded,
-            album: myAlbums
+            myMusics: myMusicsUploaded.data,
+            album: myAlbums.data
         }
     }
     

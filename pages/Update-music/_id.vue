@@ -46,6 +46,7 @@ import {
 } from 'vue-property-decorator'
 import ApiClient from '~/library/ApiClient'
 import MusicMixin from '~/mixins/music'
+import ApiClient from "@/library/ApiClient"
 
 @Component({
     middleware: "auth",
@@ -70,7 +71,7 @@ export default class music_id extends Mixins(MusicMixin) {
 
     async asyncData({params, $axios}: { params: any, $axios: any }) {
         try {
-            const data = await $axios.$get(`http://localhost:3000/api/v2/public/musics/${params.id}`)
+            const {data} = await new ApiClient($axios).get(`public/musics/${params.id}`)
             return {
                 musicItem: data
             }

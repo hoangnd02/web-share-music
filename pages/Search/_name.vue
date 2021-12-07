@@ -49,6 +49,7 @@ import { Context } from '@nuxt/types'
 import ListAlbum from '../../components/Album/ListAlbum.vue'
 import ListAlbum4 from '../../components/Album4/ListAlbum4.vue'
 import ListSong2 from '../../components/Song2/ListSong2.vue'
+import ApiClient from "@/library/ApiClient"
 
 @Component({
     middleware: "music",
@@ -69,7 +70,7 @@ export default class Name_Search extends Vue {
 
     async watchQuery(newQuery: any, oldQuery: any) {
         if(newQuery.name === oldQuery.name) return
-        const data = await this.$axios.$get(`http://localhost:3000/api/v2/public/find?name=${newQuery.name}`)
+        const {data} = await new ApiClient($axios).get(`public/find?name=${newQuery.name}`)
         this.musicsSearch = data.musics
         this.albumsSearch = data.albums
          
@@ -78,7 +79,7 @@ export default class Name_Search extends Vue {
 
     async asyncData({route, $axios}: Context) {
         try {
-            const data = await $axios.$get(`http://localhost:3000/api/v2/public/find?name=${route.query.name}`)
+            const {data} = await new ApiClient($axios).get(`public/find?name=${route.query.name}`)
             
             return {
                 name: route.query.name,
