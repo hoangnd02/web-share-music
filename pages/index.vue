@@ -82,7 +82,6 @@ import store from '~/controllers/store'
 import MusicMixin from '~/mixins/music'
 
 @Component({
-    middleware: "music",
     components: {
         Header,
         ListAlbum,

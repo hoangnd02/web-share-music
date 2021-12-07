@@ -97,8 +97,7 @@ export default {
     '/api/': 'https://learn.huuhait.me/',
   },
   middleware: ['checkLogin', 'music'],
-  router: {
-  },
+  router: {},
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
