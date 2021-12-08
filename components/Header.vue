@@ -26,7 +26,9 @@
                 </nuxt-link>
                 <li class="header-right-user">
                     <div class="header-right-user-link" data-toggle="dropdown">
-                        {{user.state && user.first_name + ' ' + user.last_name}}
+                        <div v-if="user.state">
+                            {{user.first_name + ' ' + user.last_name}}
+                        </div>
                         <span>
                             <img v-if="user.uid" :src="'/api/v2/public/users/' + user.uid + '/avatar'" alt="..."/>
                             <img v-else src="/Placeholder.jpg" alt="">
