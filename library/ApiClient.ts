@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import ZNotification from '@/library/z-notification'
 import { NuxtAxiosInstance } from "@nuxtjs/axios";
+import ZNotification from '@/library/z-notification'
 import config from "@/config"
 
 export const jsonToParam = (json: any, first_str = "?") => {
