@@ -27,7 +27,7 @@ import {
 import {
     AuthMixin
 } from '../mixins';
-import store from '~/controllers/store';
+import store from '~/controllers';
 
 @Component({
     middleware: "auth",

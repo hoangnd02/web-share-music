@@ -1,7 +1,8 @@
 import { Vue, Component } from 'vue-property-decorator';
-import store from '~/controllers/store';
+import store from '~/controllers';
 import ApiClient from '~/library/ApiClient';
 import ZNotification from '@/library/z-notification'
+import controllers from '~/controllers';
 @Component({})
 export class AuthMixin extends Vue {
   user: any = store.value.user || ''
@@ -74,7 +75,13 @@ export class AuthMixin extends Vue {
 
     try {
       const { data } = await new ApiClient().post('identity/session', { email: this.email, password: this.password });
-      store.value.user = data
+      controllers.user.uid = data.uid
+      controllers.user.bio = data.bio
+      controllers.user.email = data.email
+      controllers.user.first_name = data.first_name
+      controllers.user.last_name = data.last_name
+      controllers.user.role = data.role
+      controllers.user.state = data.state
       this.$router.push({ path: '/' })
     } catch (error) {
       return error
@@ -84,7 +91,14 @@ export class AuthMixin extends Vue {
   async logout() {    
     try {
         await new ApiClient().delete('identity/session');
-        store.value.user = null
+        store.value.user.uid = null 
+        store.value.user.email = null 
+        store.value.user.first_name = null 
+        store.value.user.last_name = null 
+        store.value.user.role = null 
+        store.value.user.bio = null 
+        store.value.user.state = null 
+
         this.user = store.value.user
         this.$router.push({ path: '/' })
     } catch (error) {

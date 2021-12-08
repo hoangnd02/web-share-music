@@ -1,5 +1,5 @@
 import { Context } from "@nuxt/types";
-import store from "@/controllers/store";
+import store from "@/controllers";
 import ApiClient from "@/library/ApiClient"
 
 export default async function (context: Context) {

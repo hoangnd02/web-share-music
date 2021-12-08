@@ -98,7 +98,7 @@ import {
 import { Context } from '@nuxt/types';
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-import store from "../controllers/store";
+import store from "../controllers";
 import MusicMixin from '~/mixins/music';
 import ApiClient from "@/library/ApiClient"
 

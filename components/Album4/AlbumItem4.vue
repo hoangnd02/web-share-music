@@ -31,7 +31,7 @@ import {
     Prop,
     Mixins
 } from 'vue-property-decorator';
-import store from '~/controllers/store';
+import store from '~/controllers';
 import MusicMixin from '~/mixins/music';
 
 @Component

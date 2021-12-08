@@ -2,6 +2,7 @@ import { ssrRef } from "@nuxtjs/composition-api";
 import { User } from "~/types";
 
 interface Store {
+  first_route: boolean;
   wavesurfer: string;
   music: any[] | null;
   playlist: any;
@@ -19,7 +20,7 @@ interface Store {
   isPlaying: boolean;
   isLoading: boolean;
   indexPlaylist: number;
-  user?: User | null;
+  user: User;
   isMusicDetail: string;
   isLogin: boolean;
   destroyWavesuffer: boolean;
@@ -30,9 +31,10 @@ interface Store {
   getAllMusics: boolean;
 }
 
-const store = ssrRef<Store>({
+export default ssrRef<Store>({
+  first_route: true,
   wavesurfer: "",
-  music: null,
+  music: [],
   playlist: [],
   currentSong: false,
   currentAlbum: null,
@@ -40,7 +42,15 @@ const store = ssrRef<Store>({
   isPlaying: false,
   isLoading: false,
   indexPlaylist: 0,
-  user: null,
+  user: {
+    uid: null,
+    first_name: null,
+    last_name: null,
+    bio: null,
+    email: null,
+    state: null,
+    role: null,
+  },
   isMusicDetail: "",
   isLogin: false,
   destroyWavesuffer: false,
@@ -58,4 +68,3 @@ const store = ssrRef<Store>({
   getAllMusics: false,
 })
 
-export default store;

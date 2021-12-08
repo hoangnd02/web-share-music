@@ -1,12 +1,12 @@
 
 export interface User {
-  uid: string;
-  first_name: string;
-  last_name: string;
-  bio: string;
-  email: string;
-  state: string;
-  role: string;
+  uid: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  bio: string | null;
+  email: string | null;
+  state: string | null;
+  role: string | null;
 }
 
 export enum NotificationType {

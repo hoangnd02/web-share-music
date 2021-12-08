@@ -86,7 +86,7 @@ import {
 } from 'vue-property-decorator';
 import SongItem2 from './Song2/SongItem2.vue';
 import MusicMixin from '~/mixins/music';
-import store from '~/controllers/store';
+import store from '~/controllers';
 import ApiClient from '~/library/ApiClient';
 import ZNotification from '@/library/z-notification'
 import config from "@/config"

@@ -78,7 +78,7 @@ import Footer from '../components/Footer.vue'
 import ListAlbum from '../components/Album/ListAlbum.vue'
 import ListAlbum4 from '../components/Album4/ListAlbum4.vue'
 import ListSong2 from '../components/Song2/ListSong2.vue'
-import store from '~/controllers/store'
+import store from '~/controllers'
 import MusicMixin from '~/mixins/music'
 
 @Component({
@@ -95,19 +95,19 @@ export default class Index extends mixins(MusicMixin) {
     listMusic: any = this.getStoreMusics
 
     get getStoreMusics() {
-        return store.value.music
+        return store.music
     }
 
     get trendingMusics() {
-        return store.value.trending
+        return store.trending
     }
 
     get newMusics() {
-        return store.value.newSongs
+        return store.newSongs
     }
 
     get allAlbums() {
-        return store.value.albums
+        return store.albums
     }
 
     layout() {
@@ -121,7 +121,7 @@ export default class Index extends mixins(MusicMixin) {
     }
 
     mounted() {
-        store.value.isMusicDetail = "position: absolute; top: -500px;"
+        store.isMusicDetail = "position: absolute; top: -500px;"
     }
 }
 </script>

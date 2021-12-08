@@ -128,7 +128,7 @@ import {
 } from 'vue-property-decorator';
 import SongItem2 from './Song2/SongItem2.vue';
 import ListSong2 from './Song2/ListSong2.vue';
-import store from '~/controllers/store';
+import store from '~/controllers';
 
 @Component({
     middleware: "getLocalMusic",
@@ -173,6 +173,8 @@ export default class Footer extends Vue {
 
 
     mounted() {
+        if (process.server) return;
+
         if (process.browser) {
             this.WaveSurfer = require('wavesurfer.js');
         }
@@ -285,6 +287,8 @@ export default class Footer extends Vue {
     }
 
     loadNextSong() {
+        if (process.server) return;
+
         const that = this
         this.waveSurfer.destroy()
 

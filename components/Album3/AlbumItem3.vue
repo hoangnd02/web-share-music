@@ -42,7 +42,7 @@
 import { mixins, Component, Prop,Ref } from 'nuxt-property-decorator';
 import ModalBox from "../Modal-box.vue"
 import MusicMixin from '~/mixins/music';
-import store from '~/controllers/store';
+import store from '~/controllers';
 
 @Component
 export default class AlbumItem3 extends mixins(MusicMixin) {

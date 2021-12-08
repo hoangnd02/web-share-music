@@ -29,7 +29,11 @@ export default {
   css: ['~/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/route'],
+  plugins: [
+    '~/plugins/controllers',
+    '~/plugins/route',
+    { src: '@/plugins/client.ts', mode: 'client' },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: ['~/components', '~/layouts'],
@@ -94,11 +98,15 @@ export default {
     proxy: true,
   },
   proxy: {
-    '/api/': 'https://learn.huuhait.me/',
+    '/api/': {
+      target: 'http://learn.huuhait.me/',
+      ws: true,
+    }
   },
-  middleware: ['getMusic', 'checkLogin'],
+  middleware: ['fetchData'],
+
   router: {
-    middleware: ['getMusic', 'checkLogin'],
+    middleware: 'fetchData'
   },
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

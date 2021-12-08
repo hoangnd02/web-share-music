@@ -26,12 +26,12 @@
                 </nuxt-link>
                 <li class="header-right-user">
                     <div class="header-right-user-link" data-toggle="dropdown">
-                        {{user && user.first_name + ' ' + user.last_name}}
+                        {{user.state && user.first_name + ' ' + user.last_name}}
                         <span>
-                            <img v-if="user" :src="'/api/v2/public/users/' + user.uid + '/avatar'" alt="..."/>
+                            <img v-if="user.uid" :src="'/api/v2/public/users/' + user.uid + '/avatar'" alt="..."/>
                             <img v-else src="/Placeholder.jpg" alt="">
                         </span>
-                        <ul v-if="!user" class="header__navbar-user-menu" >
+                        <ul v-if="!user.state" class="header__navbar-user-menu" >
                             <li class="header__navbar-user-item">
                                 <!-- <nuxt-link to="/profile">Tài khoản của tôi</nuxt-link> -->
                             </li>
@@ -40,7 +40,6 @@
                             </li>
                             <li class="header__navbar-user-item header__navbar-user-item--separate">
                                 <nuxt-link to="/register" class="header__navbar-user-item-link">Register</nuxt-link>
-
                             </li>
                         </ul>
                         <ul v-else class="header__navbar-user-menu">
@@ -69,12 +68,13 @@ import {
     Component,
     Mixins
 } from 'vue-property-decorator';
-import store from "../controllers/store";
+import store from "../controllers";
 import { AuthMixin } from '~/mixins';
+import { User } from '~/types';
 
 @Component
 export default class Header extends Mixins(AuthMixin) {
-    user: any = '';
+    user: User | null = null;
     name: string = ""
 
     get userStore() {

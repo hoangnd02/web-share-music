@@ -1,5 +1,5 @@
 import { Vue, Component } from 'vue-property-decorator';
-import store from '~/controllers/store';
+import store from '~/controllers';
 import ApiClient from '~/library/ApiClient';
 import ZNotification from '@/library/z-notification'
 

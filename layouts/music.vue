@@ -47,7 +47,7 @@ import {
 } from 'nuxt-property-decorator'
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-import store from '~/controllers/store'
+import store from '~/controllers'
 
 @Component({
     components: {

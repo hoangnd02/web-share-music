@@ -23,10 +23,12 @@ const formatError = (e: any) => {
   const { error } = response.data;
 
   // Check error
-  ZNotification.error({
-    title: "Error",
-    description: window.$nuxt.$t(error).toString()
-  })
+  if (process.client) {
+    ZNotification.error({
+      title: "Error",
+      description: window.$nuxt.$t(error).toString()
+    })
+  }
   sleep(10);
 };
 

@@ -112,7 +112,7 @@ import Footer from '../components/Footer.vue'
 import ListSong2 from '../components/Song2/ListSong2.vue'
 import Comment from '../components/Comment.vue'
 import ModalBox from "@/components/Modal-box.vue"
-import store from '~/controllers/store'
+import store from '~/controllers'
 import MusicMixin from '~/mixins/music'
 
 @Component({
