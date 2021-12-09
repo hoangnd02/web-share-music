@@ -83,7 +83,7 @@ export default class MusicMixin extends Vue {
     async getAllMusics() {
         try {
             const [musicResp1, musicResp2]  = await Promise.all([
-                new ApiClient().get("resource/musics"), 
+                new ApiClient().get("public/musics"), 
                 new ApiClient().get("public/musics?order_by=view_count&ordering=desc&limit=10")
             ])
 
