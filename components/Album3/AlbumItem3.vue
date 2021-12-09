@@ -48,6 +48,7 @@ import store from '~/controllers';
 export default class AlbumItem3 extends mixins(MusicMixin) {
     @Prop() album: any
     @Prop() type: string
+    @Prop() deleteAlbum: any
     @Ref("modal") modalBox: ModalBox;
 
     get currentAlbum() {

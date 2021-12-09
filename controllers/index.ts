@@ -63,6 +63,14 @@ class Controller {
         this.store.value.albums = albums;
     }
 
+    get myAlbums() {
+        return this.store.value.myAlbums;
+    }
+
+    set myAlbums(myAlbums) {
+        this.store.value.myAlbums = myAlbums;
+    }
+
     get isPlaying() {
         return this.store.value.isPlaying;
     }

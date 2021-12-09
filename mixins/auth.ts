@@ -75,6 +75,10 @@ export class AuthMixin extends Vue {
 
     try {
       const { data } = await new ApiClient().post('identity/session', { email: this.email, password: this.password });
+      ZNotification.success({
+        title: "success",
+        description: "Login successfully"
+      })
       controllers.user.uid = data.uid
       controllers.user.bio = data.bio
       controllers.user.email = data.email

@@ -17,6 +17,7 @@ interface Store {
     music: any[],
   } | any;
   albums: any[] | null;
+  myAlbums: any[] | null;
   isPlaying: boolean;
   isLoading: boolean;
   indexPlaylist: number;
@@ -38,7 +39,8 @@ export default ssrRef<Store>({
   playlist: [],
   currentSong: false,
   currentAlbum: null,
-  albums: null,
+  albums: [],
+  myAlbums: [],
   isPlaying: false,
   isLoading: false,
   indexPlaylist: 0,

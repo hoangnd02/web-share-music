@@ -26,14 +26,14 @@
                 </nuxt-link>
                 <li class="header-right-user">
                     <div class="header-right-user-link" data-toggle="dropdown">
-                        <div v-if="user.state">
+                        <div v-if="user.uid">
                             {{user.first_name + ' ' + user.last_name}}
                         </div>
                         <span>
                             <img v-if="user.uid" :src="'/api/v2/public/users/' + user.uid + '/avatar'" alt="..."/>
                             <img v-else src="/Placeholder.jpg" alt="">
                         </span>
-                        <ul v-if="!user.state" class="header__navbar-user-menu" >
+                        <ul v-if="!user.uid" class="header__navbar-user-menu" >
                             <li class="header__navbar-user-item">
                                 <!-- <nuxt-link to="/profile">Tài khoản của tôi</nuxt-link> -->
                             </li>

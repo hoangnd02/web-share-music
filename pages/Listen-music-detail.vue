@@ -5,7 +5,7 @@
             <div class="container-listen-content-left">
                 <div class="comment-form">
                     <CmtForm @submit.prevent="comment">
-                        <div v-if="getUser" class="comment-form-avatar">
+                        <div v-if="getUser.uid" class="comment-form-avatar">
                             <img :src="'api/v2/public/users/' + getUser.uid + '/avatar'" alt="">
                         </div>
                         <div v-else class="comment-form-avatar">
@@ -195,6 +195,7 @@ export default class Listen_music_detail extends mixins(MusicMixin) {
 
     showReplyCmt(indexCmt: number) {
         this.replyCmt = indexCmt
+        this.checkLogin()
     }
 
     setLikedState() {

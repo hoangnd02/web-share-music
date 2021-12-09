@@ -53,7 +53,7 @@
                                     {{item.name}}
                                 </div>
                                 <div class="profile-container-content-right-info-song-text-author">
-                                    Lullaby
+                                    {{item.author}}
                                 </div>
                                 <div class="profile-container-content-right-info-song-text-list">
                                     <div class="profile-container-content-right-info-song-text-list-item">
@@ -204,8 +204,6 @@ export default class Footer extends Vue {
     }
 
     createWaveSuffer() {
-        this.data2.isLoading = true
-        store.value.isLoading = true
         this.waveSurfer = this.WaveSurfer.create({
             container: '#hoang',
             waveColor: "#eee",
@@ -302,16 +300,18 @@ export default class Footer extends Vue {
 
         that.data2.currentTime = 0
         that.data2.progressTimeLine = 0
+
+        wave.on("loading", function () {
+            that.data2.isLoading = true
+            store.value.isLoading = true
+        })
+
         wave.on('ready', function () {
             that.data2.totalTime = wave.getDuration()
             that.data2.isLoading = false
             store.value.isLoading = false
 
-            // if(store.value.playlist.length === 1) {
-            //     that.isPlay = false
-            // } else {
-                that.isPlay = true
-            // }
+            that.isPlay = true
             store.value.isPlaying = that.isPlay
 
             wave.play();
@@ -450,7 +450,7 @@ export default class Footer extends Vue {
                                 }
 
                                 &-author {
-                                    color: #000;
+                                    color: #999;
                                     font-size: 12px;
                                 }
 

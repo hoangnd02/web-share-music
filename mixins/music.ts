@@ -47,7 +47,7 @@ export default class MusicMixin extends Vue {
     }
 
     checkLogin() {
-        if(!store.value.user) {
+        if(!store.value.user.uid) {
             return this.$router.push('/login')
         }
     }
@@ -109,6 +109,7 @@ export default class MusicMixin extends Vue {
 
     async like(id: number) {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             const that = this
             if(Object.prototype.hasOwnProperty.call(store.value, 'currentSong')) {
@@ -129,6 +130,7 @@ export default class MusicMixin extends Vue {
 
     async unLike(id: number) {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             const that = this
             if(Object.prototype.hasOwnProperty.call(store.value, 'currentSong')) {
@@ -159,6 +161,7 @@ export default class MusicMixin extends Vue {
 
     async comment() {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             await new ApiClient().post(`/resource/musics/${this.currentSong.id}/comment`, {
                 content: this.contentCmt
@@ -172,6 +175,7 @@ export default class MusicMixin extends Vue {
 
     async likeCmt(id: number) {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             await new ApiClient().post("/resource/comments/" + id + "/like")
 
@@ -183,6 +187,7 @@ export default class MusicMixin extends Vue {
 
     async unLikeCmt(id: number) {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             await new ApiClient().post("/resource/comments/" + id + "/unlike")
 
@@ -194,6 +199,7 @@ export default class MusicMixin extends Vue {
 
     async replyComment(id: number) {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             await new ApiClient().post(`/resource/comments/reply`, {
                 comment_id: id,
@@ -210,6 +216,7 @@ export default class MusicMixin extends Vue {
 
     async likeReply(id: number) {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             await new ApiClient().post("/resource/comments/reply/" + id + "/like")
 
@@ -221,6 +228,7 @@ export default class MusicMixin extends Vue {
 
     async unLikeReply(id: number) {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             await new ApiClient().post("/resource/comments/reply/" + id + "/unlike")
 
@@ -232,7 +240,7 @@ export default class MusicMixin extends Vue {
 
     async getAlbums() {
         try {
-            const {data} = await new ApiClient().get("resource/albums")
+            const {data} = await new ApiClient().get("public/albums")
             this.albums = await data
             store.value.albums = await data
         } catch (error) {
@@ -281,6 +289,7 @@ export default class MusicMixin extends Vue {
 
     async commentAlbum() {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             await new ApiClient().post(`/resource/albums/${store.value.currentAlbum.id}/comment`, {
                 content: this.contentCmt
@@ -307,6 +316,7 @@ export default class MusicMixin extends Vue {
 
     async likeAlbum(id: number) {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             const that = this
 
@@ -326,6 +336,7 @@ export default class MusicMixin extends Vue {
 
     async unLikeAlbum(id: number) {
         this.checkLogin()
+        if(!store.value.user.uid) return
         try {
             const that = this
 
@@ -344,16 +355,16 @@ export default class MusicMixin extends Vue {
     }
 
 
-    async deleteAlbum(id: number) {
-        try {
-            await new ApiClient().delete(`resource/albums/${id}`)
-            await this.getAlbums()
-            ZNotification.success({
-                title: "success",
-                description: "Delete album successfully"
-            })
-        } catch (error) {
-            return error
-        }
-    }
+    // async deleteAlbum(id: number) {
+    //     try {
+    //         await new ApiClient().delete(`resource/albums/${id}`)
+    //         await this.getAlbums()
+    //         ZNotification.success({
+    //             title: "success",
+    //             description: "Delete album successfully"
+    //         })
+    //     } catch (error) {
+    //         return error
+    //     }
+    // }
 }

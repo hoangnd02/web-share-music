@@ -63,8 +63,7 @@
                         </a>
                     </div> -->
                     <div v-for="(albumItem, index) in album" :key="index"  class="modal-box-list-item">
-                        <AlbumItem3 :album="albumItem" />
-                        
+                        <AlbumItem3 :album="albumItem" :deleteAlbum="deleteAlbum"/>
                     </div>
                 </div>
                 <div class="profile-container-content-right">
@@ -101,6 +100,7 @@ import Footer from '../components/Footer.vue'
 import store from "../controllers";
 import MusicMixin from '~/mixins/music';
 import ApiClient from "@/library/ApiClient"
+import ZNotification from "@/library/z-notification"
 
 @Component({
     middleware: ["auth", "album"],
@@ -137,6 +137,21 @@ export default class Profile extends Mixins(MusicMixin) {
 
     mounted() {
         store.value.isMusicDetail = "position: absolute; top: -500px;"
+    }
+
+    async deleteAlbum(id: number) {
+        try {
+            await new ApiClient().delete(`resource/albums/${id}`)
+            const indexAlbum = this.album.findIndex(album => album.id === id)
+            this.album.splice(indexAlbum, 1)
+            await this.getAlbums()
+            ZNotification.success({
+                title: "success",
+                description: "Delete album successfully"
+            })
+        } catch (error) {
+            return error
+        }
     }
 
     async asyncData({$axios}: Context) {

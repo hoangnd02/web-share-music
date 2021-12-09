@@ -7,14 +7,10 @@ async function checkLogin(context: Context) {
     try {
       const {data} = await context.$axios.get(config.api_url + "resource/users/me")
       store.user = data
-      console.log(store.user);
     
       if (context.route.path === '/confirm-email' && store.user?.state === 'pending') {
         return
       } 
-      // else if (store.user?.state === 'pending') {
-      //   context.redirect("/confirm-email")
-      // }
     } catch (error) {
       store.user.uid = null 
       store.user.email = null 

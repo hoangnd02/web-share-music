@@ -89,8 +89,8 @@ export default class Music extends Vue {
         if(process.client){
             if(!store.value.currentSong && localStorage.getItem("currentSong")) {
                 const songLocal: any = localStorage.getItem("currentSong")
-                store.value.currentSong = JSON.parse(songLocal);
-                store.value.playlist = [store.value.currentSong]
+                store.value.playlist = [JSON.parse(songLocal)]
+                store.value.currentSong = store.value.playlist[0]
             }
         }
     }

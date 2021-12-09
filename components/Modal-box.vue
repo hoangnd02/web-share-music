@@ -194,6 +194,9 @@ export default class Modal_box extends Mixins(MusicMixin) {
             form.append("musics", JSON.stringify(this.idAlbumMusic))
 
             await new ApiClient().put(`resource/albums/${this.album.id}`, form)
+            this.album.name = this.name
+            this.album.description = this.description
+
             await this.getAlbums()
             this.destroy()
             ZNotification.success({
