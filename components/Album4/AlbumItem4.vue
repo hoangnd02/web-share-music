@@ -19,24 +19,27 @@
     <div style="padding: 10px 0;" @click="setCurrentAlbum">
         <div class="new-song-list-item-title" style="padding: 1px;">
             <div class="item-title-top">{{album.name}}</div>
-            <div class="item-title-bot">Hoang dang</div>
+            <div class="item-title-bot">{{author}}</div>
         </div>
     </div>
 </div>
 </template>
 
 <script lang="ts">
+import { Context } from 'vm';
 import {
     Component,
     Prop,
     Mixins
 } from 'vue-property-decorator';
 import store from '~/controllers';
+import ApiClient from '~/library/ApiClient';
 import MusicMixin from '~/mixins/music';
 
 @Component
 export default class AlbumItem4 extends Mixins(MusicMixin) {
     @Prop() album: any
+    author: string = ""
 
     get isLoading() {
         return store.value.isLoading
@@ -64,6 +67,13 @@ export default class AlbumItem4 extends Mixins(MusicMixin) {
     setPlayPause() {
         store.value.isPlaying = !store.value.isPlaying
         this.wavesuffer.playPause()
+    }
+
+    async asyncData({$axios}: Context) {
+        const authorCreateAlbum: any = await new ApiClient($axios).get(`public/users/${store.value.user?.uid}`)
+        return {
+            author: authorCreateAlbum
+        }
     }
 }
 </script>
